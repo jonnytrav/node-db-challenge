@@ -11,4 +11,22 @@ router.get("/", async (req, res) => {
   }
 });
 
+const postBodyHelper = body => {
+  if (!body.completed) {
+    return { ...body, completed: 0 };
+  } else {
+    return body;
+  }
+};
+
+router.post("/", async (req, res) => {
+  const postBody = req.body;
+  try {
+    const addProject = DB.add(postBodyHelper(postBody));
+    res.json(addProject);
+  } catch (err) {
+    res.json({ success: false, message: err.message });
+  }
+});
+
 module.exports = router;
