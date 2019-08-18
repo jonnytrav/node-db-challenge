@@ -1,6 +1,6 @@
 const express = require("express");
 const server = express();
-const projectRouter = require("./projectRouter.js");
+const projectRouter = require("./projects/projectRouter.js");
 
 server.use(express.json());
 server.use("/api/projects", projectRouter);
