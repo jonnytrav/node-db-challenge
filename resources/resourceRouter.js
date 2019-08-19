@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
   const postBody = req.body;
   try {
     const resource = await DB.add(postBody);
-    res.status(201).json(resource);
+    res.status(201).json({ newID: resource });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

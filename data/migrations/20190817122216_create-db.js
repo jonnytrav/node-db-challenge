@@ -31,12 +31,20 @@ exports.up = function(knex) {
         .integer("completed", 1)
         .unsigned()
         .notNullable();
+      tbl
+        .integer("project_id")
+        .notNullable()
+        .unsigned()
+        .references("id")
+        .inTable("projects");
+      // .onUpdate("CASCADE")
+      // .onDelete("CASCADE");
     });
 };
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists("projects")
+    .dropTableIfExists("tasks")
     .dropTableIfExists("resources")
-    .dropTableIfExists("tasks");
+    .dropTableIfExists("projects");
 };
